@@ -57,9 +57,10 @@ class EmailMimeParser {
         if (preg_match_all('/=\?([^\?]+)\?([B|Q])\?([^\?]+)\?=/i', $subject, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
                 [$_m, $charset, $encoding, $str] = $match;
-                if ($this->contains($encoding, 'B'))
+                $encoding = strtoupper($encoding);
+                if ($encoding == 'B')
                     $decoded = base64_decode($str);
-                elseif ($this->contains($encoding, 'Q')) {
+                elseif ($encoding == 'Q') {
                     $decoded = quoted_printable_decode($str);
                     $decoded = str_replace('_', ' ', $decoded);
                 }
