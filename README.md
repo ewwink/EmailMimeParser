@@ -31,7 +31,7 @@ then
 
 ```php
 <?php
-require "EmailMimeparser.php";
+require "EmailMimeParser.php";
 
 $rawText = file_get_contents("file.eml");
 $parsed = new EmailMimeParser($rawText);
@@ -74,3 +74,4 @@ Array
 )
 */
 ```
+
